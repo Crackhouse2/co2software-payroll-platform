@@ -29,7 +29,7 @@ npm run type-check
 ## Development Status
 
 🎯 **Fragment 001**: Repository foundation ✅  
-🔄 **Fragment 002**: Basic types & payroll calculation (next)
+🔄 **Fragment 002**: Secure admin authentication (next)
 
 ## Project Philosophy
 

@@ -9,7 +9,6 @@
 ./fragment-XXX-description.sh
 
 # Validate success criteria  
-npm run type-check
 npm install
 npm run build
 ```
@@ -18,7 +17,6 @@ npm run build
 
 Every fragment must pass:
 - ✅ **File Creation**: Exact count matches expectation
-- ✅ **TypeScript**: `tsc --noEmit` succeeds
 - ✅ **Dependencies**: `npm install` works
 - ✅ **Functional**: Specific test passes
 

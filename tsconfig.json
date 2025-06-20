@@ -15,7 +15,10 @@
     "moduleResolution": "node",
     "baseUrl": "./",
     "paths": {
-      "@co2software/*": ["packages/*/src"]
+      "@co2software/shared": ["packages/shared/src"],
+      "@co2software/auth-infrastructure": ["packages/auth-infrastructure/src"],
+      "@co2software/auth-api": ["packages/auth-api/src"],
+      "@co2software/admin-ui": ["packages/admin-ui/src"]
     },
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,

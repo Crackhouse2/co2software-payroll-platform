@@ -1,34 +1,69 @@
 {
   "name": "@co2software/payroll-saas",
   "version": "1.0.0",
-  "description": "Multi-tenant serverless payroll system for co2software",
+  "description": "Multi-tenant serverless payroll system for co2software and enterprise customers",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "packages/domains/*",
+    "packages/testing/*"
   ],
   "scripts": {
-    "build": "npm run build --workspaces --if-present",
-    "test": "npm run test --workspaces --if-present",
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces",
+    "test:unit": "jest --coverage --passWithNoTests",
+    "test:e2e": "npm run test:e2e -w @co2software/testing-e2e",
+    "test:load": "npm run test:load -w @co2software/testing-load",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "type-check": "tsc --noEmit",
     "dev": "npm run dev --workspaces --if-present",
+    "deploy:local": "npm run cdk:deploy -w @co2software/infrastructure -- --profile local",
+    "deploy:play": "npm run cdk:deploy -w @co2software/infrastructure -- --profile play",
+    "deploy:dev": "npm run cdk:deploy -w @co2software/infrastructure -- --profile dev",
+    "deploy:stage": "npm run cdk:deploy -w @co2software/infrastructure -- --profile stage",
+    "deploy:prod": "npm run cdk:deploy -w @co2software/infrastructure -- --profile prod",
+    "cdk:diff": "npm run cdk:diff -w @co2software/infrastructure",
+    "cdk:synth": "npm run cdk:synth -w @co2software/infrastructure",
+    "seed:data": "npm run seed -w @co2software/shared",
     "clean": "npm run clean --workspaces --if-present && rm -rf node_modules",
-    "type-check": "tsc --noEmit"
+    "postinstall": "husky install"
   },
   "devDependencies": {
-    "@types/node": "^20.10.0",
-    "typescript": "^5.3.0"
+    "@types/jest": "^29.5.0",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "husky": "^8.0.0",
+    "jest": "^29.5.0",
+    "lint-staged": "^14.0.0",
+    "prettier": "^3.0.0",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.2.0"
   },
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=9.0.0"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/co2software/multi-tenant-payroll-saas"
+  },
   "keywords": [
     "payroll",
     "multi-tenant",
-    "serverless", 
+    "serverless",
     "aws",
     "typescript",
+    "saas",
     "co2software"
   ],
-  "author": "co2software",
+  "author": "co2software <dev@co2software.co.uk>",
   "license": "PROPRIETARY"
 }

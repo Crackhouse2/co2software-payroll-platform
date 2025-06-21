@@ -2,30 +2,59 @@
   "compilerOptions": {
     "target": "ES2022",
     "module": "commonjs",
-    "lib": ["ES2022"],
+    "lib": ["ES2022", "DOM"],
     "allowJs": true,
+    "checkJs": false,
     "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
     "outDir": "./dist",
     "rootDir": "./",
+    "composite": true,
+    "removeComments": false,
+    "noEmit": false,
+    "importHelpers": true,
+    "downlevelIteration": true,
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
     "moduleResolution": "node",
     "baseUrl": "./",
     "paths": {
-      "@co2software/shared": ["packages/shared/src"],
-      "@co2software/auth-infrastructure": ["packages/auth-infrastructure/src"],
-      "@co2software/auth-api": ["packages/auth-api/src"],
-      "@co2software/admin-ui": ["packages/admin-ui/src"]
+      "@co2software/shared/*": ["packages/shared/src/*"],
+      "@co2software/infrastructure/*": ["packages/infrastructure/src/*"],
+      "@co2software/workers/*": ["packages/workers/src/*"],
+      "@co2software/processors/*": ["packages/processors/src/*"],
+      "@co2software/web-worker/*": ["packages/web-worker/src/*"],
+      "@co2software/web-payroll/*": ["packages/web-payroll/src/*"],
+      "@co2software/employees/*": ["packages/domains/employees/src/*"],
+      "@co2software/timesheets/*": ["packages/domains/timesheets/src/*"],
+      "@co2software/payments/*": ["packages/domains/payments/src/*"],
+      "@co2software/approvals/*": ["packages/domains/approvals/src/*"],
+      "@co2software/testing-utilities/*": ["packages/testing/utilities/src/*"]
     },
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "jsx": "react-jsx"
   },
-  "include": ["packages/**/*"],
-  "exclude": ["node_modules", "dist", "**/*.test.ts"]
+  "include": [
+    "packages/**/*",
+    "tools/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "cdk.out",
+    "**/*.test.ts",
+    "**/*.spec.ts"
+  ]
 }

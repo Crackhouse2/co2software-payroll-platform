@@ -1,0 +1,20 @@
+{
+  "name": "@co2software/auth-api",
+  "version": "1.0.0",
+  "description": "Authentication API Lambda functions",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo 'No tests yet'",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@aws-sdk/client-cognito-identity-provider": "^3.450.0",
+    "@aws-sdk/client-dynamodb": "^3.450.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/uuid": "^9.0.0",
+    "typescript": "^5.3.0"
+  }
+}

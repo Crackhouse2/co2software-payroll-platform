@@ -1,0 +1,59 @@
+import type { LinksFunction, LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
+
+import adminStyles from "./styles/admin.css";import { json } from "@remix-run/node";
+import {
+  Links,
+  LiveReload,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+  useLoaderData,
+} from "@remix-run/react";
+
+import { getUserId } from "~/utils/session.server";
+
+export const meta: MetaFunction = () => [
+  { title: "co2software Payroll Admin" },
+  { name: "description", content: "Secure payroll administration panel" },
+];
+
+export const links: LinksFunction = () => [
+  { rel: "stylesheet", href: "https://cdn.tailwindcss.com" },
+];
+
+export async function loader({ request }: LoaderFunctionArgs) {
+  const userId = await getUserId(request);
+  return json({ 
+    user: userId ? { id: userId } : null,
+    ENV: {
+      NODE_ENV: process.env.NODE_ENV,
+    }
+  });
+}
+
+export default function App() {
+  const { user, ENV } = useLoaderData<typeof loader>();
+
+  return (
+    <html lang="en" className="h-full">
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <Meta />
+        <Links />
+      </head>
+      <body className="h-full bg-gray-50">
+        <Outlet />
+        <ScrollRestoration />
+        <Scripts />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.ENV = ${JSON.stringify(ENV)}`,
+          }}
+        />
+        <LiveReload />
+      </body>
+    </html>
+  );
+}
